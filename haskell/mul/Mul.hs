@@ -1,7 +1,7 @@
 import Test.QuickCheck
 
 mul :: Int -> Int -> Int
-mul x y = x + y
+mul x y = x * y
 
 main = do
   check "mul reflexivity" $ \x y ->
