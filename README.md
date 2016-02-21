@@ -1,6 +1,6 @@
 # Property Based Testing Playground
 
-This is the repository for some PBT researching to do.
+This is the repository for some Property Based Testing researching to do.
 
 ## LICENSE
 
