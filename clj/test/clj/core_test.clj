@@ -33,3 +33,33 @@
                  z gen/int]
                 (= (add x (add y z))
                    (add (add x y) z))))
+
+(defn mul [x y]
+  (* x y))
+
+(defspec mul-reflexivity
+  100
+  (prop/for-all [x gen/int
+                 y gen/int]
+                (= (mul x y) (mul y x))))
+
+(defspec mul-identity
+  100
+  (prop/for-all [x gen/int]
+                (= (mul x 1) x)))
+
+(defspec mul-no-identity
+  100
+  (prop/for-all [x gen/int
+                 not-id gen/int]
+                (or (= 1 not-id)
+                    (= 0 x not-id)
+                    (not= (mul x not-id) x))))
+
+(defspec mul-associativity
+  100
+  (prop/for-all [x gen/int
+                 y gen/int
+                 z gen/int]
+                (= (mul x (mul y z))
+                   (mul (mul x y) z))))
