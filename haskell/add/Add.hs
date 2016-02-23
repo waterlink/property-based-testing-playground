@@ -10,6 +10,9 @@ main = do
   check "add identity" $ \x ->
     add x 0 == x && add 0 x == x
 
+  check "add non-identity" $ \x y ->
+    y == 0 || add x y /= x
+
   check "add associativity" $ \x y z ->
     add x (add y z) == add (add x y) z
 
