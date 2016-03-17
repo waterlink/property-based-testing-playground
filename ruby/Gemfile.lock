@@ -1,8 +1,13 @@
+GIT
+  remote: git://github.com/abargnesi/rantly.git
+  revision: 15875453d29a3b3ba5a45c99c01b129c7818b61b
+  specs:
+    rantly (0.4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.5)
-    rantly (0.3.2)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -21,7 +26,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rantly (~> 0.3.2)
+  rantly (~> 0.4.0)!
   rspec (~> 3.4.0)
 
 BUNDLED WITH

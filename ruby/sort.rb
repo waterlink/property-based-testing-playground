@@ -1,4 +1,5 @@
 require "rantly/rspec_extensions"
+require "rantly/shrinks"
 
 module Sort
   def sort(array)
@@ -54,7 +55,7 @@ RSpec.describe Sort do
   it "being applied twice returns same result" do
     property_of do
       len = range(0, 1000)
-      array(len) { integer }
+      Deflating.new(array(len) { integer })
     end.check do |array|
       expect(sort(sort(array))).to eq(sort(array))
     end
@@ -63,7 +64,7 @@ RSpec.describe Sort do
   it "contains same elements" do
     property_of do
       len = range(0, 1000)
-      array(len) { integer }
+      Deflating.new(array(len) { integer })
     end.check do |array|
       expect(frequencies(sort(array))).to eq(frequencies(array))
     end
@@ -72,7 +73,7 @@ RSpec.describe Sort do
   it "has ordered elements" do
     property_of do
       len = range(0, 1000)
-      array(len) { integer }
+      Deflating.new(array(len) { integer })
     end.check do |array|
       expect(ordered?(sort(array))).to eq(true)
     end
@@ -85,12 +86,17 @@ RSpec.describe Sort do
   end
 
   def frequencies(array)
-    array.each_with_object(Hash.new(0)) do |value, hash|
+    array_from(array).each_with_object(Hash.new(0)) do |value, hash|
       hash[value] += 1
     end
   end
 
   def ordered?(array)
-    array.each_cons(2).all? { |x, y| x <= y }
+    array_from(array).each_cons(2).all? { |x, y| x <= y }
+  end
+
+  def array_from(maybe_deflating)
+    return maybe_deflating.array if maybe_deflating.is_a?(Deflating)
+    maybe_deflating
   end
 end
