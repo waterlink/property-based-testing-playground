@@ -4,6 +4,7 @@ def add(x, y)
   x + y
 end
 
+Quick.def_gen_choice(NotZero, Quick::Range(-100, -1), Quick::Range(1, 100))
 alias Positive = Quick::Range(1, 100)
 
 def main
@@ -19,8 +20,7 @@ def main
     add(x, 0) == x
   end
 
-  Quick.check("add not-identity", [x : Int32, y : Int32]) do
-    return true if y == 0
+  Quick.check("add not-identity", [x : Int32, y : NotZero]) do
     add(x, y) != x
   end
 
