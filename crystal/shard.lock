@@ -1,0 +1,6 @@
+version: 1.0
+shards:
+  quick:
+    github: waterlink/quick.cr
+    version: 1.0.2
+
